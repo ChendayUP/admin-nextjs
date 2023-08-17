@@ -19,7 +19,7 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-export const Primary: Story = {
+export const Normal: Story = {
   render: (args) => (
     <div style={{width: '400px', height: '220px'}}>
       <LittlePie {...args}></LittlePie>
