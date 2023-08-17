@@ -3,11 +3,11 @@ import {
   mdiChartTimelineVariant,
   mdiGithub
 } from '@mdi/js'
-import TitleLineWithButton from '../components/Section/TitleLineWithButton';
-import Button from '../components/Button'
+import TitleLineWithButton from '../../components/Section/TitleLineWithButton';
+import Button from '../../components/Button'
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof TitleLineWithButton> = {
-  title: 'Example/TitleLineWithButton',
+  title: 'Section/TitleLineWithButton',
   component: TitleLineWithButton,
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout

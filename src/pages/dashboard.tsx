@@ -26,6 +26,9 @@ import ChartLineSample from '../components/ChartLineSample'
 import NotificationBar from '../components/NotificationBar'
 import TableSampleClients from '../components/Table/SampleClients'
 import { getPageTitle } from '../config'
+import NoDataPie from '@/components/ECharts/NoDataPie'
+import Image from 'next/image';
+import complete from '/public/static/images/complete.png';
 
 const Dashboard = () => {
   const { clients } = useSampleClients()
@@ -47,6 +50,11 @@ const Dashboard = () => {
         <title>{getPageTitle('Dashboard')}</title>
       </Head>
       <SectionMain>
+        <div>
+          <NoDataPie title='临边防护' />
+        </div>
+        <Image width={30} height={30} src={complete} alt="" />
+        <img src={complete.src} alt="" />
         <SectionTitleLineWithButton icon={mdiChartTimelineVariant} title="Overview" main>
           <Button
             href="https://github.com/justboil/admin-one-react-tailwind"
