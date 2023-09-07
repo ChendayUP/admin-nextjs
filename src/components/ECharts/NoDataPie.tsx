@@ -36,19 +36,6 @@ const NoDataPie = (props: Props) => {
         left: 'center',
         top: '40%',
       },
-      // title: {
-      //   text: '',
-      //   subtext: '',
-      //   left: 'center'
-      // },
-      // tooltip: {
-      //   trigger: 'item',
-      // },
-
-      // legend: {
-      //   orient: 'vertical',
-      //   left: 'left'
-      // },
       series: [
         {
           name: title,
@@ -77,6 +64,21 @@ const NoDataPie = (props: Props) => {
               },
             },
           },
+          itemStyle: { // 实现渐变
+            color: {
+              type: 'linear',
+              x: 0,
+              y: 0,
+              x2: 1,
+              y2: 1,
+              colorStops: [
+                { offset: 0, color: '#054140' }, // 0% 处的颜色
+                // { offset: 0.5, color: '#4AE9F' }, // 0% 处的颜色
+                { offset: 1, color: '#14AE9F' } // 100% 处的颜色
+              ],
+              globalCoord: true // 缺省为 false
+            }
+          }
         },
       ],
     }

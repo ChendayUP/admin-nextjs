@@ -3,7 +3,7 @@ import * as echarts from 'echarts'
 
 type Props = {
   title: string
-  data: { value: number; name: string }[]
+  data: { value: number; name: string; gradientColor?: string[] }[]
 }
 
 const Pie = (props: Props) => {
@@ -12,6 +12,18 @@ const Pie = (props: Props) => {
     let element = document.getElementById('pie-chart')
     let myChart = echarts.init(element)
     myChart.clear()
+    let colorList = ['#14AE9F', '#14E9E7', '#E0A635']
+    let gradientColor = [
+      ['rgba(20, 174, 159, 1)', 'rgba(5, 65, 64, 1)'],
+      ['rgba(22, 252, 249, 0)', 'rgba(22, 252, 249, 1)'],
+      ['rgba(224, 166, 53, 0)', 'rgba(224, 166, 53, 1)'],
+    ]
+    data = data.map((item, index) => {
+      return {
+        ...item,
+        gradientColor: gradientColor[index],
+      }
+    })
     let option = {
       title: {
         text: '报警总数',
@@ -35,82 +47,65 @@ const Pie = (props: Props) => {
           fontWeight: 700,
         },
       },
-      // title: {
-      //   text: '',
-      //   subtext: '',
-      //   left: 'center'
-      // },
       tooltip: {
         trigger: 'item',
       },
-
-      // legend: {
-      //   orient: 'vertical',
-      //   left: 'left'
-      // },
       series: [
         {
           name: title,
           type: 'pie',
           radius: ['50%', '70%'],
-          data: data,
-          emphasis: {
-            itemStyle: {
-              shadowBlur: 10,
-              shadowOffsetX: 0,
-              shadowColor: 'rgba(0, 0, 0, 0.5)',
-            },
-          },
-          label: {
-            alignTo: 'edge',
-            formatter: '{name|{b}}\n\n{time|{c}个}',
-            minMargin: 10,
-            edgeDistance: 10,
-            lineHeight: 15,
-            rich: {
-              time: {
-                fontSize: 16,
-                color: '#999'
-              }
+          color: colorList,
+          data: data.map((item) => {
+            return {
+              ...item,
+              itemStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 1, 1, [
+                  { offset: 0, color: item.gradientColor[0] },
+                  { offset: 1, color: item.gradientColor[1] },
+                ]),
+                shadowBlur: 20,
+                shadowColor: 'rgba(0, 0, 0, 0.3)',
+              },
+              label: {
+                alignTo: 'edge',
+                minMargin: 10,
+                edgeDistance: 10,
+                lineHeight: 15,
+                formatter: '{name|{b}}\n\n{time|{c}个}',
+                rich: {
+                  time: {
+                    fontSize: 14,
+                    color: '#fff',
+                  },
+                },
+                show: true,
+                color: item.gradientColor[1],
+              },
+              labelLine: {
+                lineStyle: {
+                  color: item.gradientColor[1],
+                },
+              },
             }
-          },
+          }),
           labelLayout: function (params) {
-            const isLeft = params.labelRect.x < myChart.getWidth() / 2;
-            const points = params.labelLinePoints;
+            const isLeft = params.labelRect.x < myChart.getWidth() / 2
+            const points = params.labelLinePoints
             // Update the end point.
             points[1][1] = points[1][1] - 2 // 标签引导线第二个点 y轴
             points[2][1] = points[2][1] - 2 // 标签引导线第三个点 y轴
-            points[2][0] = isLeft  // 标签引导线第三个点 x轴
+            points[2][0] = isLeft // 标签引导线第三个点 x轴
               ? params.labelRect.x
-              : params.labelRect.x + params.labelRect.width;
+              : params.labelRect.x + params.labelRect.width
             return {
-              labelLinePoints: points
-            };
+              labelLinePoints: points,
+            }
           },
-          // label: {
-          //   normal: {
-          //     show: false,
-          //     position: 'center',
-          //     formatter: function () {
-          //       return ' 66个\r\n 报警总数'
-          //     },
-          //     textStyle: {
-          //       fontSize: 18,
-          //       color: '#666',
-          //     },
-          //   },
-          //   emphasis: {
-          //     show: true,
-          //     // textStyle: {
-          //     //   fontSize: '30',
-          //     //   fontWeight: 'bold',
-          //     // },
-          //   },
-          // },
         },
       ],
     }
-    option && myChart.setOption(option)
+    myChart.setOption(option)
   }
 
   useEffect(() => {

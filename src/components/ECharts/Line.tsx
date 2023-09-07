@@ -35,7 +35,13 @@ const Line = (props: Props) => {
       },
       legend: {
         data: data.map((item) => item.name),
-        type: 'scroll'
+        type: 'scroll',
+        // itemStyle: {
+        //   color: '#fff'
+        // }
+        textStyle: {
+          color: '#fff' 
+        }
       },
       grid: {
         left: '3%',
@@ -51,12 +57,26 @@ const Line = (props: Props) => {
           symbolSize: 10,
           formatter: '{MM}-{dd}',
           rotate: 30,
-          margin: 13
+          margin: 13,
+          color: '#fff', // 红色
+
         }
       },
       yAxis: {
         type: 'value',
         name: '℃',
+        nameTextStyle: {
+          color: '#fff', // 红色
+        },
+        axisLabel: {
+          color: '#fff', // 红色
+        },
+        splitLine: {
+          show: true,
+          lineStyle: {
+            type: 'dashed'    // 刻度线类型
+          }
+        }
         // nameLocation : 'start',
       },
       calculable: true,
@@ -82,6 +102,11 @@ const Line = (props: Props) => {
               { type: 'min', name: 'Min' }
             ]
           },
+          markLine: {
+            lineStyle: {
+              type: 'dashed'
+            },
+          }
           // itemStyle: {
           //   color: 'red'
           // }  
