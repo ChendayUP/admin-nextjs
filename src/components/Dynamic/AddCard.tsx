@@ -43,6 +43,7 @@ export default function AddCard() {
               {item.title}
               <Button
                 type="primary"
+                className='bg-blue-700'
                 style={{ marginLeft: '10px' }}
                 onClick={() => addItem(item.title)}
               >

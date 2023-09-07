@@ -41,9 +41,9 @@ module.exports = {
       },
     },
   },
-  corePlugins: {
-    preflight: false
-  },
+  // corePlugins: {
+  //   preflight: false
+  // },
   plugins: [
     require('@tailwindcss/forms'),
     plugin(function ({ matchUtilities, theme }) {
