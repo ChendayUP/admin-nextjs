@@ -3,7 +3,7 @@ import { mdiChartTimelineVariant, mdiGithub } from '@mdi/js'
 import Line from '../../components/ECharts/Line'
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Line> = {
-  title: 'ECharts/Line',
+  title: 'ECharts/TimeLine',
   component: Line,
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/react/configure/story-layout
@@ -27,6 +27,8 @@ export const Normal: Story = {
   ),
   args: {
     title: '大体积测温',
+    // selectList: ['H01'],
+    selectList: ['H01', 'Z01', 'D01'],
     data: [
       {
         "name": "Z01", 
@@ -64,6 +66,7 @@ export const Normal: Story = {
           {"time": "2023-08-18 16:32:11", "value": 32},
           {"time": "2023-08-19 21:15:47", "value": 78},
           {"time": "2023-08-20 12:55:36", "value": 88},
+          {"time": "2023-08-21 00:00:01", "value": 88},
           // ...
         ]
       },
@@ -71,36 +74,54 @@ export const Normal: Story = {
         "name": "H02",
         "data": [
           {"time": "2023-08-18 09:41:20", "value": 25},
+          {"time": "2023-08-18 16:32:11", "value": 32},
+          {"time": "2023-08-19 21:15:47", "value": 78},
+          {"time": "2023-08-20 12:55:36", "value": 88},
         ]
       },
       {
         "name": "H03",
         "data": [
           {"time": "2023-08-18 09:41:20", "value": 25},
+          {"time": "2023-08-18 16:32:11", "value": 32},
+          {"time": "2023-08-19 21:15:47", "value": 78},
+          {"time": "2023-08-20 12:55:36", "value": 828},
         ]
       },
       {
         "name": "H03",
         "data": [
           {"time": "2023-08-18 09:41:20", "value": 25},
+          {"time": "2023-08-18 16:32:11", "value": 32},
+          {"time": "2023-08-19 21:15:47", "value": 278},
+          {"time": "2023-08-20 12:55:36", "value": 848},
         ]
       },
+      // {
+      //   "name": "Z01",
+      //   "data": [
+      //     {"time": "2023-08-18 09:41:20", "value": 25},
+      //     {"time": "2023-08-18 16:32:11", "value": 332},
+      //     {"time": "2023-08-19 21:15:47", "value": 758},
+      //     {"time": "2023-08-20 12:55:36", "value": 878},
+      //   ]
+      // },
       {
-        "name": "H05",
+        "name": "D01",
         "data": [
           {"time": "2023-08-18 09:41:20", "value": 25},
-        ]
-      },
-      {
-        "name": "H06",
-        "data": [
-          {"time": "2023-08-18 09:41:20", "value": 25},
+          {"time": "2023-08-18 16:32:11", "value": 32},
+          {"time": "2023-08-19 21:15:47", "value": 758},
+          {"time": "2023-08-20 12:55:36", "value": 988},
         ]
       },
       {
         "name": "H07",
         "data": [
           {"time": "2023-08-18 09:41:20", "value": 25},
+          {"time": "2023-08-18 16:32:11", "value": 332},
+          {"time": "2023-08-19 21:15:47", "value": 738},
+          {"time": "2023-08-20 12:55:36", "value": 234},
         ]
       },
 
